@@ -8,7 +8,7 @@ def ceaserEncrypt(plainText, shiftKey) :
         if c.isupper() :
             #get unicode and index for each letter in text.
             c_unicode = ord(c) # get the unicode for each of the charachters in the ciphertext
-            c_index = ord(c) - ord("A") # get the index of each charachter in the alphabet for each of the charachters in the ciphertext
+            c_index = c_unicode - ord("A") # get the index of each charachter in the alphabet for each of the charachters in the ciphertext
 
             e_newIndex = (c_index + shiftKey) % 26  #perform the shift using the shiftKey and mod 26 to stay within range of alphabet.
             e_newUnicode = e_newIndex + ord("A") #get unicode for new charachter
@@ -20,6 +20,33 @@ def ceaserEncrypt(plainText, shiftKey) :
             encryptedText += c # if character is not upper case, just return the character unchanged.
         
     print(encryptedText)
+
+
+def ceasarDecrypt(codedText, shiftKey) :
+    
+    encrypt_text = codedText.upper() # convert coded text to uppercase. It will make it easier to use unicode numbers afterwards.
+
+    decryptedText = ""
+
+    for c in encrypt_text :
+
+        if c.isupper() :
+            c_unicode = ord(c) # get the unicode for each of the charachters in the encrypted text
+            c_index = c_unicode - ord("A") # get the index of each charachter in the alphabet for each of the charachters in the ciphertext
+
+            d_newIndex = (c_index - shiftKey) % 26
+            d_newUnicode = d_newIndex + ord("A")
+
+            d_charachter = chr(d_newUnicode)
+            decryptedText += d_charachter
+
+        else : 
+            decryptedText += c # if character is not upper case, just return the character unchanged.
+
+    print(decryptedText)
+
+
+
 
 
 
